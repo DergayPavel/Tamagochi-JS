@@ -1,0 +1,16 @@
+body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#health{
+    /*width: 100%;*/
+    height: 20px;
+    background-color: red;
+}
+
+/* #iwant{
+    display: none;
+} */
