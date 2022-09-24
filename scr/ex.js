@@ -1,14 +1,12 @@
 class Tamagochi{
     constructor(name){
-        this.name=name;
+        this.nameTamagochi=name;
         this.forсes=100;
     }
-
     health(){
         if(this.forсes>0){
             this.forсes-=0.01;
         }
-        //console.log(this.forсes);
         return this.forсes;
     }
     eat(){
@@ -18,21 +16,36 @@ class Tamagochi{
         if(this.forсes<100){
             this.forсes+=10;
         }
-        console.log(this.forсes);
         return this.forсes;
     }
 }
 
 
-const penguin = new Tamagochi('Penguin');
+const tamagochi = new Tamagochi('Penguin');
+//const bear = new Tamagochi('Bear');
 const wh=document.documentElement.clientWidth/100;
 
 setInterval(function(){
-    penguin.health();
-    let whnow=wh*penguin.forсes;
+    tamagochi.health();
+    let whnow=wh*tamagochi.forсes;
     health.style.width = whnow+'px';
 },10);
 
 document
     .querySelector('#eat')
-    .addEventListener('click', function(){penguin.eat()});
+    .addEventListener('click', function(){tamagochi.eat()});
+
+document
+    .querySelector('#addTamagochi')
+    .addEventListener('click', addTamagochi);
+
+
+function addTamagochi(){
+    let newname=getNames();
+}
+
+function getNames(){
+    return[
+        document.querySelector('#nameTamagochi').value
+    ];
+}

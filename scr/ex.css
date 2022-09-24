@@ -1,16 +1,20 @@
 body{
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    margin: 0;
+}
+
+#tamagochi{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid gray;
 }
 
 #health{
-    /*width: 100%;*/
     height: 20px;
     background-color: red;
 }
-
-/* #iwant{
-    display: none;
-} */
