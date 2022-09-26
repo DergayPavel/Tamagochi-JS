@@ -20,11 +20,11 @@ tamagochiType.append(optionAdd);
 
 function eat(){
     let i=getTamagochiIndex();
-    if(health(i)>0){
+    if(tamagochi.forсes[i]>0){
         if(tamagochi.forсes[i]>90){
             tamagochi.forсes[i]=100;
         }
-        if(tamagochi.forсes[i]<100){
+        if(tamagochi.forсes[i]<90){
             tamagochi.forсes[i]+=10;
         }
         return tamagochi.forсes;
@@ -38,7 +38,7 @@ function health (i){
         else{
             tamagochi.image[i]='icons/Sorry.png'
         }
-    return tamagochi.forсes;
+    return tamagochi.forсes[i];
 }
 
 function getTamagochiIndex(){
