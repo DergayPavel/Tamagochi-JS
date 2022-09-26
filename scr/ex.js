@@ -1,47 +1,73 @@
 class Tamagochi{
-    constructor(name){
-        this.nameTamagochi=name;
-        this.forсes=100;
+    constructor(){
+        this.nameTamagochi=[];
+        this.forсes=[];
+        this.image=[];
     }
-    health(){
-        if(this.forсes>0){
-            this.forсes-=0.01;
-        }
-        return this.forсes;
-    }
-    eat(){
-        if(this.forсes>90){
-            this.forсes=100;
-        }
-        if(this.forсes<100){
-            this.forсes+=10;
-        }
-        return this.forсes;
+    saveTamagochi(name){
+        this.nameTamagochi.push(name);
+        this.forсes.push(100);
+        this.image.push(getImage())
     }
 }
 
-
-const tamagochi = new Tamagochi('Penguin');
-//const bear = new Tamagochi('Bear');
+const tamagochi = new Tamagochi();
+tamagochi.saveTamagochi('Pen');
 const wh=document.documentElement.clientWidth/100;
+let optionAdd=document.createElement('option');
+optionAdd.innerHTML=tamagochi.nameTamagochi[tamagochi.nameTamagochi.length-1];
+tamagochiType.append(optionAdd); 
 
-setInterval(function(){
-    tamagochi.health();
-    let whnow=wh*tamagochi.forсes;
-    health.style.width = whnow+'px';
-},10);
+function eat(){
+    let i=getTamagochiIndex();
+    if(health(i)>0){
+        if(tamagochi.forсes[i]>90){
+            tamagochi.forсes[i]=100;
+        }
+        if(tamagochi.forсes[i]<100){
+            tamagochi.forсes[i]+=10;
+        }
+        return tamagochi.forсes;
+    }
+}
 
-document
-    .querySelector('#eat')
-    .addEventListener('click', function(){tamagochi.eat()});
+function health (i){
+        if(tamagochi.forсes[i]>0){
+        tamagochi.forсes[i]-=0.01;
+        }
+        else{
+            tamagochi.image[i]='icons/Sorry.png'
+        }
+    return tamagochi.forсes;
+}
 
-document
-    .querySelector('#addTamagochi')
-    .addEventListener('click', addTamagochi);
+function getTamagochiIndex(){
+    var name = document.getElementById('tamagochiType').value;
+    for(let i=0; i<tamagochi.nameTamagochi.length; i++ ){
+        if(name===tamagochi.nameTamagochi[i]){
+            return i;
+        }
+    }
+}
 
+setInterval(main,10);
+
+function main(){
+    for(let k=0; k<tamagochi.nameTamagochi.length;k++){
+        health(k);
+    }
+    var m=getTamagochiIndex();
+    document.getElementById("imgTamagochi").src = tamagochi.image[m];
+    var whnow=wh*tamagochi.forсes[m];
+    healthy.style.width = whnow+'px';
+}
 
 function addTamagochi(){
     let newname=getNames();
+    tamagochi.saveTamagochi(newname.toString());
+    let optionAdd=document.createElement('option');
+    optionAdd.innerHTML=tamagochi.nameTamagochi[tamagochi.nameTamagochi.length-1];
+    tamagochiType.append(optionAdd);
 }
 
 function getNames(){
@@ -49,3 +75,24 @@ function getNames(){
         document.querySelector('#nameTamagochi').value
     ];
 }
+
+function getImage(k){
+    let image=[];
+    image[0]='icons/peng.png';
+    image[1]='icons/Bear.png';
+    image[2]='icons/dog.jpg';
+    image[3]='icons/dinosaur.jpg';
+    image[4]='icons/croc.jpg';
+    let i=Math.floor(Math.random() * image.length);
+    return image[i]
+}
+
+document
+    .querySelector('#eat')
+    .addEventListener('click', eat);
+
+document
+    .querySelector('#addTamagochi')
+    .addEventListener('click', addTamagochi);
+
+
